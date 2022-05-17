@@ -1,0 +1,6 @@
+[submodule "ocp-helm-charts"]
+	path = ocp-helm-charts
+	url = https://github.com/packit/ocp-helm-charts
+[submodule "ocp-deployments"]
+	path = ocp-deployments
+	url = https://github.com/packit/ocp-deployments
