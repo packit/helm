@@ -31,7 +31,7 @@ env_variables:
     name: packit-sentry
     key: sentry
   deployment:
-    value: my_deployment_value
+    value: production
 
 # Cron job parameters 
 cron:
