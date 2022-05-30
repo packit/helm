@@ -1,7 +1,7 @@
 # This name will be displayed as an app name in the OpenShift
 app_name: packit-service-validation
 # The OpenShift project name
-oc_namespace: ~
+oc_namespace: cyborg
 
 # Cron job name
 cronjob_name: packit-service-validation
@@ -15,7 +15,7 @@ image:
   # Image repository without a tag
   repo: quay.io/packit/packit-service-validation
   # Image tag
-  tag: ~
+  tag: 4d37da0
 
 # The git repository from which code will be built
 git:
@@ -35,9 +35,10 @@ env_variables:
 # Cron job parameters 
 cron:
   # Schedule
-  schedule:
+  # runs every day at 4 a.m.
+  schedule: "0 4 * * *"
   concurrencyPolicy: "Allow" 
-  startingDeadlineSeconds: ~
+  startingDeadlineSeconds: 14400
   suspend: false
   successfulJobsHistoryLimit: 5
   failedJobsHistoryLimit: 5
