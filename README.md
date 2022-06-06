@@ -4,8 +4,11 @@
 
 To deploy the *Packit Validation Service* through *Helm* into *cyborg* follow this steps:
 
-
 ### Setup deployment
+
+Helm uses an **image** created through a GitHub action and pushed to Quay.io, the **tag** for this image is the first *7 digit for the commit SHA* of the packit/deployment repo.
+
+To use a new image update the referenced tag [here](https://github.com/packit/udp/blob/main/ocp-deployments/packit-service-validation-prod.yaml#L18).
 
 Copy your OpenShift *API token* from the [PSI Cluster](https://ocp4.psi.redhat.com/)
 
