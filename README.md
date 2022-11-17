@@ -22,7 +22,7 @@ export PACKIT_GITHUB_TOKEN=$( echo -n 'token from bitwarden' | base64 )
 
 ### Install Service
 ```
-helm upgrade --install --cleanup-on-fail packit-service-validation ocp-helm-charts/packit-service-validation/ --set oc_namespace=cyborg --set secrets.sentry=${PACKIT_SENTRY} --set secrets.github=${PACKIT_GITHUB_TOKEN} --values ocp-deployments/packit-service-validation-prod.yaml
+helm upgrade --install --cleanup-on-fail packit-service-validation ocp-helm-charts/packit-service-validation/ --set secrets.sentry=${PACKIT_SENTRY} --set secrets.github=${PACKIT_GITHUB_TOKEN} --values ocp-deployments/packit-service-validation-prod.yaml
 ```
 
 ### Uninstall Service
