@@ -32,12 +32,12 @@ env_variables:
   deployment:
     value: production
 
-# Cron job parameters 
+# Cron job parameters
 cron:
   # Schedule
   # runs every day at 4 a.m.
   schedule: "0 4 * * *"
-  concurrencyPolicy: "Allow" 
+  concurrencyPolicy: "Allow"
   startingDeadlineSeconds: 14400
   suspend: false
   successfulJobsHistoryLimit: 5
