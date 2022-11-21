@@ -1,4 +1,4 @@
-apiVersion  : v1
+apiVersion  : v2
 name        : packit-service-validation
 description : Helm chart for deploying packit-service-validation app
 type        : application
@@ -13,4 +13,3 @@ keywords:
 maintainers:
   - name : Serhii Turivnyi
     email: sturivny@redhat.com
-

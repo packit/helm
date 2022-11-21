@@ -32,11 +32,11 @@ env_variables:
   deployment:
     value: production
 
-# Cron job parameters 
+# Cron job parameters
 cron:
   # Schedule
   schedule:
-  concurrencyPolicy: "Allow" 
+  concurrencyPolicy: "Allow"
   startingDeadlineSeconds: ~
   suspend: false
   successfulJobsHistoryLimit: 5
