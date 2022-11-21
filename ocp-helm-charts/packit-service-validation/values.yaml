@@ -24,11 +24,11 @@ git:
 # App environment variables
 env_variables:
   github_token:
-    name: packit-github-token
+    name: github
     key: token
-  sentry_secret:
-    name: packit-sentry
-    key: sentry
+  sentry_dsn:
+    name: sentry
+    key: dsn
   deployment:
     value: production
 

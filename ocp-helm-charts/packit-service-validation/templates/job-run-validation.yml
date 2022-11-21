@@ -40,8 +40,8 @@ spec:
             - name: SENTRY_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.env_variables.sentry_secret.name }}
-                  key: {{ .Values.env_variables.sentry_secret.key }}
+                  name: {{ .Values.env_variables.sentry_dsn.name }}
+                  key: {{ .Values.env_variables.sentry_dsn.key }}
             - name: DEPLOYMENT
               value: {{ .Values.env_variables.deployment.value }}
           restartPolicy: OnFailure
