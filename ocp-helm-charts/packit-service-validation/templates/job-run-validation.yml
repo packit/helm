@@ -29,8 +29,7 @@ spec:
         spec:
           containers:
           - name: {{ .Values.container.name }}
-            image: {{ .Values.image.repo }}:{{ .Values.image.tag }}
-            command: ["python3", "/usr/bin/packit-service-validation.py"]
+            image: "{{ .Values.image.repo }}:{{ .Values.image.tag }}"
             imagePullPolicy: IfNotPresent
             env:
             - name: GITHUB_TOKEN
