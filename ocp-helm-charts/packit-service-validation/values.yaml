@@ -2,7 +2,6 @@ deployment: ~
 
 # Cron job parameters
 cronjob:
-  name: ~
   # runs every day at 4 a.m.
   schedule: "0 4 * * *"
   # maximum duration is 4 hours
