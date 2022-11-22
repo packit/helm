@@ -44,4 +44,6 @@ spec:
                   key: {{ .Values.env_variables.sentry_dsn.key }}
             - name: DEPLOYMENT
               value: {{ .Values.env_variables.deployment.value }}
+            resources:
+              {{- toYaml .Values.resources | nindent 14 }}
           restartPolicy: OnFailure
