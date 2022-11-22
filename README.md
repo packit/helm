@@ -29,13 +29,13 @@ GitHub token from `Release/usercont bot` item.
 
 #### Install from this repo
 
-    helm upgrade --install --cleanup-on-fail packit-service-validation ocp-helm-charts/packit-service-validation/ --set secrets.sentry=${SENTRY} --set secrets.github=${GITHUB} --values ocp-deployments/packit-service-validation/prod.yaml
+    helm upgrade --install --cleanup-on-fail packit-production-validation ocp-helm-charts/packit-service-validation/ --set secrets.sentry=${SENTRY} --set secrets.github=${GITHUB} --values ocp-deployments/packit-service-validation/production.yaml
 
 #### Install from chart repository
 
     helm repo add packit https://helm.packit.dev
     helm repo update
-    helm upgrade --install --cleanup-on-fail packit-service-validation packit/packit-service-validation --set secrets.sentry=${SENTRY} --set secrets.github=${GITHUB} --values ocp-deployments/packit-service-validation/prod.yaml
+    helm upgrade --install --cleanup-on-fail packit-production-validation packit/packit-service-validation --set secrets.sentry=${SENTRY} --set secrets.github=${GITHUB} --values ocp-deployments/packit-service-validation/production.yaml
 
 ### Render templates
 

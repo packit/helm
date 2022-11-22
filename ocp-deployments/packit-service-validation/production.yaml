@@ -1,0 +1,9 @@
+cronjob:
+  name: packit-production-validation
+
+image:
+  tag: 2c35a8a
+
+env_variables:
+  deployment:
+    value: production
