@@ -1,31 +1,14 @@
+# https://docs.openshift.com/container-platform/4.11/rest_api/workloads_apis/cronjob-batch-v1.html
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: {{ .Values.cronjob_name }}
+  name: {{ .Values.cronjob.name }}
 spec:
-  schedule: "{{ .Values.cron.schedule }}"
-  concurrencyPolicy: {{ .Values.cron.concurrencyPolicy }}
-  startingDeadlineSeconds: {{ .Values.cron.startingDeadlineSeconds }}
-  suspend: {{ .Values.cron.suspend }}
-  successfulJobsHistoryLimit: {{ .Values.cron.successfulJobsHistoryLimit }}
-  failedJobsHistoryLimit: {{ .Values.cron.failedJobsHistoryLimit }}
+  schedule: "{{ .Values.cronjob.schedule }}"
   jobTemplate:
-    metadata:
-      annotations:
-        timestamp: {{ now | quote }}
-      creationTimestamp: null
-      labels:
-        app: {{ .Values.app_name }}
-        deploymentconfig: {{ .Values.app_name }}
     spec:
+      activeDeadlineSeconds: {{ .Values.cronjob.activeDeadlineSeconds }}
       template:
-        metadata:
-          annotations:
-            timestamp: {{ now | quote }}
-          creationTimestamp: null
-          labels:
-            app: {{ .Values.app_name }}
-            deploymentconfig: {{ .Values.app_name }}
         spec:
           containers:
           - name: {{ .Values.container.name }}
