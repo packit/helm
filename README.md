@@ -29,18 +29,23 @@ GitHub token from `Release/usercont bot` item.
 
 #### Install from this repo
 
-    helm upgrade --install --cleanup-on-fail packit-production-validation ocp-helm-charts/packit-service-validation/ --set secrets.sentry=${SENTRY} --set secrets.github=${GITHUB} --values ocp-deployments/packit-service-validation/production.yaml
+    make packit-service-validation-install DEPLOYMENT=[production|staging]
 
 #### Install from chart repository
 
+If you're going to use the chart from outside (without having this repo cloned),
+you can install the chart from our chart repository. You just need to have a file
+with keys overriding those defined in `values.yaml` with `~` value.
+
     helm repo add packit https://helm.packit.dev
     helm repo update
-    helm upgrade --install --cleanup-on-fail packit-production-validation packit/packit-service-validation --set secrets.sentry=${SENTRY} --set secrets.github=${GITHUB} --values ocp-deployments/packit-service-validation/production.yaml
+    helm upgrade --install --cleanup-on-fail packit-service-validation packit/packit-service-validation --set secrets.sentry=${SENTRY} --set secrets.github=${GITHUB} --values your-values-file.yaml
 
 ### Render templates
 
-If you just want to see how the rendered templates would look like,
-add `--dry-run --debug` to the above `helm upgrade` command.
+If you just want to see how the rendered templates would look like:
+
+    make packit-service-validation-dryrun DEPLOYMENT=[production|staging]
 
 ### Releases
 There's a [release workflow](https://github.com/packit/udp/blob/main/.github/workflows/release.yml)
