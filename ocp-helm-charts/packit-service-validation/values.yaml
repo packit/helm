@@ -1,3 +1,5 @@
+deployment: ~
+
 # Cron job parameters
 cronjob:
   name: ~
@@ -6,27 +8,12 @@ cronjob:
   # maximum duration is 4 hours
   activeDeadlineSeconds: 14400
 
-# Container name
-container:
-  name: run-validation
-
 # Container image
 image:
   # Image repository without a tag
   repo: quay.io/packit/packit-service-validation
   # Image tag
   tag: ~
-
-# Container environment variables
-env_variables:
-  github_token:
-    name: github
-    key: token
-  sentry_dsn:
-    name: sentry
-    key: dsn
-  deployment:
-    value: ~
 
 # Pod resources maximum
 resources:

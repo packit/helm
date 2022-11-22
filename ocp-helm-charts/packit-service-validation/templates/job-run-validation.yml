@@ -11,22 +11,22 @@ spec:
       template:
         spec:
           containers:
-          - name: {{ .Values.container.name }}
+          - name: run-validation
             image: "{{ .Values.image.repo }}:{{ .Values.image.tag }}"
             imagePullPolicy: IfNotPresent
             env:
             - name: GITHUB_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.env_variables.github_token.name }}
-                  key: {{ .Values.env_variables.github_token.key }}
+                  name: {{ .Release.Name }}-github
+                  key: token
             - name: SENTRY_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.env_variables.sentry_dsn.name }}
-                  key: {{ .Values.env_variables.sentry_dsn.key }}
+                  name: {{ .Release.Name }}-sentry
+                  key: dsn
             - name: DEPLOYMENT
-              value: {{ .Values.env_variables.deployment.value }}
+              value: {{ .Values.deployment }}
             resources:
               {{- toYaml .Values.resources | nindent 14 }}
           restartPolicy: OnFailure
