@@ -4,7 +4,7 @@ kind: CronJob
 metadata:
   name: {{ .Release.Name }}
 spec:
-  schedule: "{{ .Values.cronjob.schedule }}"
+  schedule: {{ .Values.cronjob.schedule | quote }}
   jobTemplate:
     spec:
       activeDeadlineSeconds: {{ .Values.cronjob.activeDeadlineSeconds }}
