@@ -2,6 +2,22 @@ apiVersion: v1
 entries:
   packit-service-validation:
   - apiVersion: v2
+    created: "2022-11-23T16:12:41.22476904Z"
+    description: Helm chart for deploying packit-service-validation app
+    digest: 45ed5b335fd8a4b215d5c97ed020e089969ff97450179fded56c34299c71305d
+    keywords:
+    - python
+    - unified
+    - deployment
+    maintainers:
+    - name: The Packit team
+      url: https://packit.dev
+    name: packit-service-validation
+    type: application
+    urls:
+    - https://github.com/packit/udp/releases/download/packit-service-validation-1.1.0/packit-service-validation-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v2
     appVersion: 1.0.0
     created: "2022-11-21T08:53:57.510329159Z"
     description: Helm chart for deploying packit-service-validation app
@@ -18,4 +34,4 @@ entries:
     urls:
     - https://github.com/packit/udp/releases/download/packit-service-validation-1.0.0/packit-service-validation-1.0.0.tgz
     version: 1.0.0
-generated: "2022-11-21T08:53:57.510342659Z"
+generated: "2022-11-23T16:12:41.22477614Z"
