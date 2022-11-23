@@ -1,0 +1,4 @@
+deployment: production
+
+image:
+  tag: 2c35a8a
