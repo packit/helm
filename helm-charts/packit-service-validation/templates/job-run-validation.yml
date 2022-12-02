@@ -1,4 +1,4 @@
-# https://docs.openshift.com/container-platform/4.11/rest_api/workloads_apis/cronjob-batch-v1.html
+# https://docs.openshift.com/container-platform/latest/rest_api/workloads_apis/cronjob-batch-v1.html
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -13,7 +13,6 @@ spec:
           containers:
           - name: run-validation
             image: "{{ .Values.image.repo }}:{{ .Values.image.tag }}"
-            imagePullPolicy: IfNotPresent
             env:
             - name: GITHUB_TOKEN
               valueFrom:
