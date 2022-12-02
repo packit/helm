@@ -1,0 +1,34 @@
+# Cron job parameters
+cronjob:
+  # At 02:00 on Tuesday
+  schedule: "0 2 * * 2"
+
+# Container image
+image:
+  # Image repository without a tag
+  repo: quay.io/packit/import-images
+  # Image tag
+  tag: ~
+
+# Openshift cluster
+host: ~
+
+# name of the secret with token of a service account used to login to the cluster
+secret:
+  name: ~
+  key: token
+
+# packit / stream / fedora-source-git
+service: packit
+
+# prod / stg
+deployment: prod
+
+# Pod resources maximum
+resources:
+  limits:
+    cpu: "100m"
+    memory: "80Mi"
+  requests:
+    cpu: "100m"
+    memory: "80Mi"
