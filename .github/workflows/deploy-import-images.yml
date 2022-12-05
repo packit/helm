@@ -1,0 +1,38 @@
+name: Deploy import-images cron job
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'helm-charts/import-images/**/*.yaml'
+      - 'values/import-images/*.yaml'
+
+jobs:
+  deploy:
+    # To not run in forks
+    if: github.repository_owner == 'packit'
+    runs-on: ubuntu-latest
+    environment: prod
+    env:
+      OC_SERVER: https://api.auto-prod.gi0n.p1.openshiftapps.com:6443
+    strategy:
+      matrix:
+        project: [packit-prod, stream-prod, fedora-source-git-prod]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Deploy
+        run: |
+          if [ ${{ matrix.project }} == 'packit-prod' ]; then
+            TOKEN=${{ secrets.PACKIT_PROD_TOKEN }}
+          elif [ ${{ matrix.project }} == 'stream-prod' ]; then
+            TOKEN=${{ secrets.STREAM_PROD_TOKEN }}
+          elif [ ${{ matrix.project }} == 'fedora-source-git-prod' ]; then
+            TOKEN=${{ secrets.FEDORA_SOURCE_GIT_PROD_TOKEN }}
+          fi
+          oc login --token=$TOKEN --server=$OC_SERVER
+          make -C values/import-images/ install PROJECT=${{ matrix.project }}
