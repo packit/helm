@@ -1,5 +1,15 @@
 apiVersion: v1
 entries:
+  import-images:
+  - apiVersion: v2
+    created: "2022-12-06T15:20:58.441459197Z"
+    description: A Helm chart for import-images CronJob
+    digest: 93a636115ae07f94c7e33435bc86f1be2641bafb7717cf2447a32f5279fe8558
+    name: import-images
+    type: application
+    urls:
+    - https://github.com/packit/helm/releases/download/import-images-0.1.1/import-images-0.1.1.tgz
+    version: 0.1.1
   packit-service-validation:
   - apiVersion: v2
     created: "2022-11-23T16:12:41.22476904Z"
@@ -34,4 +44,4 @@ entries:
     urls:
     - https://github.com/packit/udp/releases/download/packit-service-validation-1.0.0/packit-service-validation-1.0.0.tgz
     version: 1.0.0
-generated: "2022-11-23T16:12:41.22477614Z"
+generated: "2022-12-06T15:20:58.441467797Z"
