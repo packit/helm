@@ -1,53 +1,19 @@
-# [Unified Openshift Deployment Process](https://docs.google.com/presentation/d/1MlLuuawzxJg6U15zbPby6JAtNNEWZAhfGEWNcpYSWeo)
+# Helm Charts
 
-for the [Packit Service Validation](https://github.com/packit/deployment/tree/main/cron-jobs/packit-service-validation).
+for
+* [Packit Service Validation cron job](https://github.com/packit/deployment/tree/main/cron-jobs/packit-service-validation)
+* [Import-images cron job](https://github.com/packit/deployment/tree/main/cron-jobs/import-images)
 
-To deploy the *Packit Service Validation* through *Helm* follow this steps:
+## Deployment
 
-### Setup deployment
+All charts are deployed automatically via GitHub/Gitlab CI/CI.
 
-Helm uses an **image** created through a GitHub action and pushed to Quay.io,
-the **tag** for this image is the first *7 digit for the commit SHA* of the packit/deployment repo.
+For instructions how to do it manually, see
+* [packit-service-validation/README.md](values/packit-service-validation/README.md)
+* [import-images/README.md](values/import-images/README.md)
 
-To use a new image update the referenced tag
-[here](https://github.com/packit/udp/blob/main/ocp-deployments/packit-service-validation-prod.yaml#L18).
+## Releases
 
-### Install Helm Chart
-
-Login to OpenShift cluster and switch to proper project. In case of packit-service validation
-it's `cyborg` project @ [PSI Cluster](https://ocp4.psi.redhat.com).
-
-    oc login --token=sha256~....  --server= ....
-    oc project cyborg
-
-Get secrets from Bitwarden.
-Sentry from `extra-vars.yml` in `secrets-packit-[prod|stg]` item and
-GitHub token from `Release/usercont bot` item.
-
-    export SENTRY=$( echo -n 'token from bitwarden' | base64 )
-    export GITHUB=$( echo -n 'token from bitwarden' | base64 )
-
-#### Install from this repo
-
-    make packit-service-validation-install DEPLOYMENT=[production|staging]
-
-#### Install from chart repository
-
-If you're going to use the chart from outside (without having this repo cloned),
-you can install the chart from our chart repository. You just need to have a file
-with keys overriding those defined in `values.yaml` with `~` value.
-
-    helm repo add packit https://helm.packit.dev
-    helm repo update
-    helm upgrade --install --cleanup-on-fail packit-service-validation packit/packit-service-validation --set secrets.sentry=${SENTRY} --set secrets.github=${GITHUB} --values your-values-file.yaml
-
-### Render templates
-
-If you just want to see how the rendered templates would look like:
-
-    make packit-service-validation-dryrun DEPLOYMENT=[production|staging]
-
-### Releases
 There's a [release workflow](https://github.com/packit/udp/blob/main/.github/workflows/release.yml)
 to automate releasing the Helm charts. It uses
 [Helm Chart Releaser Action](https://github.com/marketplace/actions/helm-chart-releaser)
@@ -57,3 +23,8 @@ and whenever there's a new chart version, creates a corresponding GitHub release
 named for the chart version, adds Helm chart artifacts to the release,
 and creates or updates an `index.yaml` file with metadata about those releases,
 which is then hosted on GitHub Pages at [helm.packit.dev](https://helm.packit.dev).
+
+## [Unified Openshift Deployment Process](https://docs.google.com/presentation/d/1MlLuuawzxJg6U15zbPby6JAtNNEWZAhfGEWNcpYSWeo)
+
+We use images created by a GitHub workflow and pushed to Quay.io,
+the **tag** for an image is the first *7 digit for the commit SHA*.
