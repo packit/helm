@@ -22,17 +22,16 @@ jobs:
         project: [packit-prod, stream-prod, fedora-source-git-prod]
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+
+      - if: ${{ matrix.project == 'packit-prod' }}
+        run: echo "secret_name_token=PACKIT_PROD_TOKEN" >> $GITHUB_ENV
+      - if: ${{ matrix.project == 'stream-prod' }}
+        run: echo "secret_name_token=STREAM_PROD_TOKEN" >> $GITHUB_ENV
+      - if: ${{ matrix.project == 'fedora-source-git-prod' }}
+        run: echo "secret_name_token=FEDORA_SOURCE_GIT_PROD_TOKEN" >> $GITHUB_ENV
 
       - name: Deploy
         run: |
-          if [ ${{ matrix.project }} == 'packit-prod' ]; then
-            TOKEN=${{ secrets.PACKIT_PROD_TOKEN }}
-          elif [ ${{ matrix.project }} == 'stream-prod' ]; then
-            TOKEN=${{ secrets.STREAM_PROD_TOKEN }}
-          elif [ ${{ matrix.project }} == 'fedora-source-git-prod' ]; then
-            TOKEN=${{ secrets.FEDORA_SOURCE_GIT_PROD_TOKEN }}
-          fi
-          oc login --token=$TOKEN --server=$OC_SERVER
+          oc login --token=${{ secrets[env.secret_name_token] }} --server=$OC_SERVER
           make -C values/import-images/ install PROJECT=${{ matrix.project }}
