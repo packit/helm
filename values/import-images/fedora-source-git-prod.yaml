@@ -1,5 +1,5 @@
 image:
-  tag: "3cf6351"
+  tag: "369a9d1"
 
 host: https://api.auto-prod.gi0n.p1.openshiftapps.com:6443
 
