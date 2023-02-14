@@ -27,3 +27,4 @@ resources:
 secrets:
   sentry: ~
   github: ~
+  gitlab: ~

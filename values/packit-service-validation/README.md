@@ -6,11 +6,12 @@ Login to [PSI](https://ocp4.psi.redhat.com) and switch to `cyborg` project.
     oc project cyborg
 
 Get secrets from Bitwarden.
-Sentry from `extra-vars.yml` in `secrets-packit-[prod|stg]` item and
-GitHub token from `Release/usercont bot` item.
+Sentry from `extra-vars.yml` in `secrets-packit-[prod|stg]` item,
+GitHub token from `Release/usercont bot` item and GitLab token from `Gitlab.com account for validation` item.
 
     export SENTRY=$( echo -n 'token from bitwarden' | base64 )
     export GITHUB=$( echo -n 'token from bitwarden' | base64 )
+    export GITLAB=$( echo -n 'token from bitwarden' | base64 )
 
 ### Install from this repo
 
@@ -24,7 +25,7 @@ with keys overriding those defined in `values.yaml` with `~` value.
 
     helm repo add packit https://helm.packit.dev
     helm repo update
-    helm upgrade --install --cleanup-on-fail packit-service-validation packit/packit-service-validation --set secrets.sentry=${SENTRY} --set secrets.github=${GITHUB} --values your-values-file.yaml
+    helm upgrade --install --cleanup-on-fail packit-service-validation packit/packit-service-validation --set secrets.sentry=${SENTRY} --set secrets.github=${GITHUB} secrets.gitlab=${GITLAB} --values your-values-file.yaml
 
 ### Render templates
 

@@ -19,6 +19,11 @@ spec:
                 secretKeyRef:
                   name: {{ .Release.Name }}-github
                   key: token
+            - name: GITLAB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: { { .Release.Name } }-gitlab
+                  key: token
             - name: SENTRY_SECRET
               valueFrom:
                 secretKeyRef:
