@@ -22,7 +22,7 @@ spec:
             - name: GITLAB_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: { { .Release.Name } }-gitlab
+                  name: {{ .Release.Name }}-gitlab
                   key: token
             - name: SENTRY_SECRET
               valueFrom:
