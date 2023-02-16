@@ -15,14 +15,31 @@ For instructions how to do it manually, see
 ## Releases
 
 There's a [release workflow](https://github.com/packit/udp/blob/main/.github/workflows/release.yml)
-to automate releasing the Helm charts. It uses
-[Helm Chart Releaser Action](https://github.com/marketplace/actions/helm-chart-releaser)
-which turns this project into a self-hosted Helm chart repository.
-It does this – during every push to `main` – by checking each chart in the project,
-and whenever there's a new chart version, creates a corresponding GitHub release
-named for the chart version, adds Helm chart artifacts to the release,
-and creates or updates an `index.yaml` file with metadata about those releases,
-which is then hosted on GitHub Pages at [helm.packit.dev](https://helm.packit.dev).
+to automate releasing the Helm charts and
+adding them to a repository on every push to `main`.
+Don't forget to bump a chart version
+([import-images](https://github.com/packit/helm/blob/main/helm-charts/import-images/Chart.yaml#L8) or
+[packit-service-validation](https://github.com/packit/helm/blob/main/helm-charts/packit-service-validation/Chart.yaml#L5))
+if you want a new chart version to be released.
+
+### [Repository](https://helm.sh/docs/topics/charts/#chart-repositories)
+
+Is hosted on GitHub Pages in this repo and reachable at [helm.packit.dev](https://helm.packit.dev)
+
+
+    $ helm repo add packit helm.packit.dev
+    "packit" has been added to your repositories
+
+    $ helm repo update
+    Hang tight while we grab the latest from your chart repositories...
+    ...Successfully got an update from the "packit" chart repository
+    Update Complete. ⎈Happy Helming!⎈
+
+    $ helm search repo packit
+    NAME                            	CHART VERSION	APP VERSION	DESCRIPTION
+    packit/packit-service-validation	1.2.1        	           	Helm chart for deploying packit-service-validat...
+    packit/import-images            	0.1.1        	           	A Helm chart for import-images CronJob
+
 
 ## [Unified Openshift Deployment Process](https://docs.google.com/presentation/d/1MlLuuawzxJg6U15zbPby6JAtNNEWZAhfGEWNcpYSWeo)
 
