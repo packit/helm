@@ -13,11 +13,11 @@ repos:
       - id: mixed-line-ending
       - id: trailing-whitespace
   - repo: https://github.com/gruntwork-io/pre-commit
-    rev: v0.1.17
+    rev: v0.1.19
     hooks:
       - id: helmlint
   - repo: https://github.com/packit/pre-commit-hooks
-    rev: 8db5a24e01b9f54aaa7a800f33c4b9aa619af1b9
+    rev: v1.0.0
     hooks:
       - id: check-rebase
         args:
