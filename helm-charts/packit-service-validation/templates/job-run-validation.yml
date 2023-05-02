@@ -1,51 +1,57 @@
 # https://docs.openshift.com/container-platform/latest/rest_api/workloads_apis/cronjob-batch-v1.html
+{{- range $cronjob := $.Values.cronjobs }}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ $.Release.Name }}-{{ $cronjob.id }}
 spec:
-  schedule: {{ .Values.cronjob.schedule | quote }}
+  schedule: {{ $cronjob.schedule | quote }}
   jobTemplate:
     spec:
-      activeDeadlineSeconds: {{ .Values.cronjob.activeDeadlineSeconds }}
+      activeDeadlineSeconds: {{ $cronjob.activeDeadlineSeconds }}
       template:
         spec:
           containers:
           - name: run-validation
-            image: "{{ .Values.image.repo }}:{{ .Values.image.tag }}"
+            image: "{{ $.Values.image.repo }}:{{ $.Values.image.tag }}"
             env:
+{{ if eq $cronjob.id "daily-validation" }}
             - name: GITHUB_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Release.Name }}-github
+                  name: {{ $.Release.Name }}-github
                   key: token
             - name: GITLAB_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Release.Name }}-gitlab
+                  name: {{ $.Release.Name }}-gitlab
                   key: token
+{{ end }}
+{{ if eq $cronjob.id "weekly-validation"}}
             - name: GITLAB_GNOME_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Release.Name }}-gitlab-gnome
+                  name: {{ $.Release.Name }}-gitlabgnome
                   key: token
             - name: GITLAB_FREEDESKTOP_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Release.Name }}-gitlab-freedesktop
+                  name: {{ $.Release.Name }}-gitlabfreedesktop
                   key: token
             - name: SALSA_DEBIAN_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Release.Name }}-salsa-debian
+                  name: {{ $.Release.Name }}-salsadebian
                   key: token
+{{ end }}
             - name: SENTRY_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Release.Name }}-sentry
+                  name: {{ $.Release.Name }}-sentry
                   key: dsn
             - name: DEPLOYMENT
-              value: {{ .Values.deployment }}
+              value: {{ $.Values.deployment }}
             resources:
-              {{- toYaml .Values.resources | nindent 14 }}
+              {{- toYaml $.Values.resources | nindent 14 }}
           restartPolicy: OnFailure
+{{- end }}
