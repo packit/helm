@@ -24,6 +24,21 @@ spec:
                 secretKeyRef:
                   name: {{ .Release.Name }}-gitlab
                   key: token
+            - name: GITLAB_GNOME_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-gitlab-gnome
+                  key: token
+            - name: GITLAB_FREEDESKTOP_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-gitlab-freedesktop
+                  key: token
+            - name: SALSA_DEBIAN_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-salsa-debian
+                  key: token
             - name: SENTRY_SECRET
               valueFrom:
                 secretKeyRef:

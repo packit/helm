@@ -28,3 +28,6 @@ secrets:
   sentry: ~
   github: ~
   gitlab: ~
+  gitlab-gnome: ~
+  gitlab-freedesktop: ~
+  salsa-debian: ~
