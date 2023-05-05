@@ -15,7 +15,7 @@ spec:
           - name: run-validation
             image: "{{ $.Values.image.repo }}:{{ $.Values.image.tag }}"
             env:
-{{ if eq $cronjob.id "daily-validation" }}
+{{- if eq $cronjob.id "daily-validation" }}
             - name: GITHUB_TOKEN
               valueFrom:
                 secretKeyRef:
@@ -26,8 +26,8 @@ spec:
                 secretKeyRef:
                   name: {{ $.Release.Name }}-gitlab
                   key: token
-{{ end }}
-{{ if eq $cronjob.id "weekly-validation"}}
+{{- end }}
+{{- if eq $cronjob.id "weekly-validation"}}
             - name: GITLAB_GNOME_TOKEN
               valueFrom:
                 secretKeyRef:
@@ -43,7 +43,7 @@ spec:
                 secretKeyRef:
                   name: {{ $.Release.Name }}-salsa-debian
                   key: token
-{{ end }}
+{{- end }}
             - name: SENTRY_SECRET
               valueFrom:
                 secretKeyRef:
