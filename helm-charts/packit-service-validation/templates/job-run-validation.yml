@@ -54,4 +54,5 @@ spec:
             resources:
               {{- toYaml $.Values.resources | nindent 14 }}
           restartPolicy: OnFailure
+---
 {{- end }}
