@@ -7,11 +7,18 @@ Login to [PSI](https://ocp4.psi.redhat.com) and switch to `cyborg` project.
 
 Get secrets from Bitwarden.
 Sentry from `extra-vars.yml` in `secrets-packit-[prod|stg]` item,
-GitHub token from `Release/usercont bot` item and GitLab token from `Gitlab.com account for validation` item.
+GitHub token from `Release/usercont bot` item.
+GitLab token from `Gitlab.com account for validation` item.
+Gitlab gnome token for `packit-validation` user taken from `Gitlab (gnome.org)` item.
+Gitlab freedesktop token for `packit-validation` user taken from `Gitlab (freedesktop.org)` item.
+Gitlab salsa debian token for `packit-validation` user taken from `Gitlab (salsa.debian.org)` item.
 
     export SENTRY=$( echo -n 'token from bitwarden' | base64 )
     export GITHUB=$( echo -n 'token from bitwarden' | base64 )
     export GITLAB=$( echo -n 'token from bitwarden' | base64 )
+    export GITLAB_GNOME=$( echo -n 'token from bitwarden' | base64 )
+    export GITLAB_FREEDESKTOP=$( echo -n 'token from bitwarden' | base64 )
+    export SALSA_DEBIAN=$( echo -n 'token from bitwarden' | base64 )
 
 ### Install from this repo
 

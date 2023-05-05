@@ -1,11 +1,17 @@
 deployment: ~
 
 # Cron job parameters
-cronjob:
-  # runs every day at 4 a.m.
-  schedule: "0 4 * * *"
-  # maximum duration is 4 hours
-  activeDeadlineSeconds: 14400
+cronjobs:
+  - id: "daily-validation"
+    # runs every day at 4 a.m.
+    schedule: "0 4 * * *"
+    # maximum duration is 4 hours
+    activeDeadlineSeconds: 14400
+  - id: "weekly-validation"
+    # runs on wednesday at 4 a.m.
+    schedule: "0 4 * * wed"
+    # maximum duration is 4 hours
+    activeDeadlineSeconds: 14400
 
 # Container image
 image:
@@ -28,3 +34,6 @@ secrets:
   sentry: ~
   github: ~
   gitlab: ~
+  gitlabgnome: ~
+  gitlabfreedesktop: ~
+  salsadebian: ~
