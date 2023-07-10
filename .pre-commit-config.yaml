@@ -21,7 +21,7 @@ repos:
     hooks:
       - id: check-rebase
         args:
-          - https://github.com/packit/udp.git
+          - https://github.com/packit/helm.git
         stages: [manual, push]
 
 ci:
