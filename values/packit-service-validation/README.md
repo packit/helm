@@ -1,16 +1,26 @@
 ## Install
 
-Login to [PSI](https://ocp4.psi.redhat.com) and switch to `cyborg` project.
+Login to **MP+ preprod cluster** and switch to `packit--validation` project to install **validation for Packit production instance**.
+
+Or login to **MP+ prod cluster** and switch to `packit--validation` project to install **validation for Packit staging instance**.
+
+In this way instances are validated from outside their clusters.
 
     oc login --token=sha256~....  --server= ....
-    oc project cyborg
+    oc project packit--validation
 
 Get secrets from Bitwarden.
+
 Sentry from `extra-vars.yml` in `secrets-packit-[prod|stg]` item,
+
 GitHub token from `Release/usercont bot` item.
+
 GitLab token from `Gitlab.com account for validation` item.
+
 Gitlab gnome token for `packit-validation` user taken from `Gitlab (gnome.org)` item.
+
 Gitlab freedesktop token for `packit-validation` user taken from `Gitlab (freedesktop.org)` item.
+
 Gitlab salsa debian token for `packit-validation` user taken from `Gitlab (salsa.debian.org)` item.
 
     export SENTRY=$( echo -n 'token from bitwarden' | base64 )
