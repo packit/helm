@@ -4,7 +4,7 @@
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: check-merge-conflict
       - id: check-symlinks
@@ -13,7 +13,7 @@ repos:
       - id: mixed-line-ending
       - id: trailing-whitespace
   - repo: https://github.com/gruntwork-io/pre-commit
-    rev: v0.1.23
+    rev: v0.1.28
     hooks:
       - id: helmlint
   - repo: https://github.com/packit/pre-commit-hooks
@@ -22,7 +22,7 @@ repos:
       - id: check-rebase
         args:
           - https://github.com/packit/helm.git
-        stages: [manual, push]
+        stages: [manual, pre-push]
 
 ci:
   # requires helm binary
