@@ -1,9 +1,0 @@
-image:
-  tag: "6c940e9"
-
-host: https://api.auto-prod.gi0n.p1.openshiftapps.com:6443
-
-secret:
-  name: pipeline-token-m8z9n
-
-service: fedora-source-git

@@ -1,8 +1,0 @@
-apiVersion: v2
-name: import-images
-description: A Helm chart for import-images CronJob
-type: application
-
-# Increment each time you make changes
-# to the chart and its templates.
-version: 0.1.1
