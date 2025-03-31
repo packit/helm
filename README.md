@@ -2,7 +2,6 @@
 
 for
 * [Packit Service Validation cron job](https://github.com/packit/deployment/tree/main/cron-jobs/packit-service-validation)
-* [Import-images cron job](https://github.com/packit/deployment/tree/main/cron-jobs/import-images)
 
 ## Deployment
 
@@ -10,7 +9,6 @@ All charts are deployed automatically via GitHub/Gitlab CI/CI.
 
 For instructions how to do it manually, see
 * [packit-service-validation/README.md](values/packit-service-validation/README.md)
-* [import-images/README.md](values/import-images/README.md)
 
 ## Releases
 
@@ -18,7 +16,6 @@ There's a [release workflow](https://github.com/packit/udp/blob/main/.github/wor
 to automate releasing the Helm charts and
 adding them to a repository on every push to `main`.
 Don't forget to bump a chart version
-([import-images](https://github.com/packit/helm/blob/main/helm-charts/import-images/Chart.yaml#L8) or
 [packit-service-validation](https://github.com/packit/helm/blob/main/helm-charts/packit-service-validation/Chart.yaml#L5))
 if you want a new chart version to be released.
 
@@ -38,7 +35,6 @@ Is hosted on GitHub Pages in this repo and reachable at [helm.packit.dev](https:
     $ helm search repo packit
     NAME                            	CHART VERSION	APP VERSION	DESCRIPTION
     packit/packit-service-validation	1.2.1        	           	Helm chart for deploying packit-service-validat...
-    packit/import-images            	0.1.1        	           	A Helm chart for import-images CronJob
 
 
 ## [Unified Openshift Deployment Process](https://docs.google.com/presentation/d/1MlLuuawzxJg6U15zbPby6JAtNNEWZAhfGEWNcpYSWeo)

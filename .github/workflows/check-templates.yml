@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        chart: [import-images, packit-service-validation]
+        chart: [packit-service-validation]
 
     steps:
       - uses: actions/checkout@v3
