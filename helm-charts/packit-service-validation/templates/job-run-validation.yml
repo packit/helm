@@ -69,6 +69,14 @@ spec:
                   key: dsn
             - name: DEPLOYMENT
               value: {{ $.Values.deployment }}
+            - name: GIT_AUTHOR_NAME
+              value: "Packit Validation"
+            - name: GIT_AUTHOR_EMAIL
+              value: "validation@packit.dev"
+            - name: GIT_COMMITTER_NAME
+              value: "Packit Validation"
+            - name: GIT_COMMITTER_EMAIL
+              value: "validation@packit.dev"
             resources:
               {{- toYaml $.Values.resources | nindent 14 }}
 {{- if eq $cronjob.id "daily-validation" }}
