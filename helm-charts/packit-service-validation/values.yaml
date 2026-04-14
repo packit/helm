@@ -8,8 +8,8 @@ cronjobs:
     # maximum duration is 4 hours
     activeDeadlineSeconds: 14400
   - id: "weekly-validation"
-    # runs on wednesday at 4 a.m.
-    schedule: "0 4 * * wed"
+    # runs on wednesday at 2 a.m.
+    schedule: "0 2 * * wed"
     # maximum duration is 4 hours
     activeDeadlineSeconds: 14400
 
