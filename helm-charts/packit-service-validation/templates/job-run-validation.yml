@@ -14,6 +14,15 @@ spec:
           containers:
           - name: run-validation
             image: "{{ $.Values.image.repo }}:{{ $.Values.image.tag }}"
+{{- if eq $cronjob.id "daily-validation" }}
+            volumeMounts:
+            - name: pagure-ssh-key
+              mountPath: /secrets/pagure-ssh
+              readOnly: true
+            - name: pagure-keytab
+              mountPath: /secrets/pagure-keytab
+              readOnly: true
+{{- end }}
             env:
 {{- if eq $cronjob.id "daily-validation" }}
             - name: GITHUB_TOKEN
@@ -26,6 +35,15 @@ spec:
                 secretKeyRef:
                   name: {{ $.Release.Name }}-gitlab
                   key: token
+            - name: PAGURE_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Release.Name }}-pagure-token
+                  key: token
+            - name: PAGURE_SSH_KEY
+              value: /secrets/pagure-ssh/key
+            - name: PAGURE_KEYTAB
+              value: /secrets/pagure-keytab/keytab
 {{- end }}
 {{- if eq $cronjob.id "weekly-validation"}}
             - name: GITLAB_GNOME_TOKEN
@@ -53,6 +71,17 @@ spec:
               value: {{ $.Values.deployment }}
             resources:
               {{- toYaml $.Values.resources | nindent 14 }}
+{{- if eq $cronjob.id "daily-validation" }}
+          volumes:
+          - name: pagure-ssh-key
+            secret:
+              secretName: {{ $.Release.Name }}-pagure-ssh
+              defaultMode: 0400
+          - name: pagure-keytab
+            secret:
+              secretName: {{ $.Release.Name }}-pagure-keytab
+              defaultMode: 0400
+{{- end }}
           restartPolicy: OnFailure
 ---
 {{- end }}

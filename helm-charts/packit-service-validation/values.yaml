@@ -37,3 +37,6 @@ secrets:
   gitlabgnome: ~
   gitlabfreedesktop: ~
   salsadebian: ~
+  pagure_token: ~
+  pagure_ssh_key: ~
+  pagure_keytab: ~
