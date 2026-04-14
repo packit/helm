@@ -23,8 +23,8 @@ image:
 # Pod resources maximum
 resources:
   limits:
-    cpu: "100m"
-    memory: "80Mi"
+    cpu: "500m"
+    memory: "500Mi"
   requests:
     cpu: "100m"
     memory: "80Mi"
