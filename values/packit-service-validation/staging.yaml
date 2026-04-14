@@ -1,4 +1,4 @@
 deployment: staging
 
 image:
-  tag: ba510c5
+  tag: 373ee6c
