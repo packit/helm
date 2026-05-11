@@ -10,6 +10,8 @@ jobs:
     # To not run in forks
     if: github.repository_owner == 'packit'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
